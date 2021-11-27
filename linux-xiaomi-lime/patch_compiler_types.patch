@@ -1,0 +1,7 @@
+Fix compiler error: "Please don't include <linux/compiler-gcc.h> directly, include <linux/compiler.h> instead."
+diff --git a/include/linux/compiler_types.h b/include/linux/compiler_types.h
+--- a/include/linux/compiler_types.h
++++ b/include/linux/compiler_types.h
+@@ -64 +64 @@ #include <linux/compiler-gcc.h>
+-#include <linux/compiler-gcc.h>
++<linux/compiler.h>

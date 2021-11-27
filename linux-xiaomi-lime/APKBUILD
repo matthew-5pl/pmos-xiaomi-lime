@@ -25,16 +25,14 @@ _config="config-$_flavor.$arch"
 source="
 	$pkgname-$_commit.tar.gz::https://github.com/stormbreaker-project/$_repository/archive/$_commit.tar.gz
 	$_config
-	gcc7-give-up-on-ilog2-const-optimizations.patch
-	gcc8-fix-put-user.patch
-	gcc10-extern_YYLOC_global_declaration.patch
-	kernel-use-the-gnu89-standard-explicitly.patch
+
 "
 builddir="$srcdir/$_repository-$_commit"
 _outdir="out"
 
 prepare() {
 	default_prepare
+	REPLACE_GCCH=0
 	. downstreamkernel_prepare
 }
 
@@ -51,9 +49,5 @@ package() {
 
 sha512sums="
 522c745d8d117e6a65c40565e65d11e0175c3368a9d2a5148959d5c76b83665eba9e6a57614fdebaa7657ee436e3be81429e04c1fe314e5b0b3fa3cf8321d07e  linux-xiaomi-lime-0399cad3bd0bdcce0070259236a6e89ab2dfae7c.tar.gz
-137c005a2e5dce7ae95ecc5ff7cf11858c88a9c4afdf6e57a7130b91e6a610b0381e5ef045d72b98147663aed4825754b01372c913c4035ad2a387be88778842  config-xiaomi-lime.aarch64
-77eba606a71eafb36c32e9c5fe5e77f5e4746caac292440d9fb720763d766074a964db1c12bc76fe583c5d1a5c864219c59941f5e53adad182dbc70bf2bc14a7  gcc7-give-up-on-ilog2-const-optimizations.patch
-197d40a214ada87fcb2dfc0ae4911704b9a93354b75179cd6b4aadbb627a37ec262cf516921c84a8b1806809b70a7b440cdc8310a4a55fca5d2c0baa988e3967  gcc8-fix-put-user.patch
-2b48f1bf0e3f70703d2cdafc47d5e615cc7c56c70bec56b2e3297d3fa4a7a1321d649a8679614553dde8fe52ff1051dae38d5990e3744c9ca986d92187dcdbeb  gcc10-extern_YYLOC_global_declaration.patch
-ad0182a483791fc88e058838bc331b2f04a75ba291e763767babdb815efadfc3b4fda97e69e2e3f00a426cabea088e35297a92bd287592597d1e309be68ee92c  kernel-use-the-gnu89-standard-explicitly.patch
+64a14d9d4c39060c63028a3b74fefadcaea58090ba67d55e24ed1b1e852b632e1cd73bb8c2f74a09df3b5468ef7be29045d558830539609690fddadcd5ba6585  config-xiaomi-lime.aarch64
 "
